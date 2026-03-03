@@ -7,9 +7,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-
-# Check authentication
-
 import base64
 
 def img_to_base64(path):
@@ -291,14 +288,26 @@ st.markdown(
 @st.cache_data
 def load_data():
     df = pd.read_excel("Datasheet_DG.xlsx")
+
     df.columns = df.columns.str.strip()
+
+    # Clean product names
+    df["Product"] = (
+        df["Product"]
+        .astype(str)
+        .str.strip()
+        .str.replace(r"\s+", " ", regex=True)
+    )
+
+    # Clean HSN codes (force 8-digit string)
+    df["HSN Code"] = df["HSN Code"].astype(str).str.strip()
+
     df["Date"] = pd.to_datetime(df["Date"])
     df["Year"] = df["Date"].dt.year
     df["Month_Num"] = df["Date"].dt.month
     df["Month_Name"] = df["Date"].dt.month_name()
 
     return df
-
 
 df = load_data()
 
@@ -399,7 +408,7 @@ with f4:
             if selected_display == "All":
                 df_product = df_segment
             else:
-                selected_product = selected_display.split(" (")[0]
+                selected_product = selected_display.rsplit(" (", 1)[0]
                 df_product = df_segment[
                     df_segment["Product"] == selected_product
                 ]
@@ -647,7 +656,7 @@ with col1:
     )
 
     fig_bar.update_traces(
-        textfont=dict(
+	textfont=dict(
         color="white",
         size=16,
         family="Georgia, serif"
@@ -687,7 +696,7 @@ with col2:
     )
 
     fig_pie.update_traces(
-        textfont=dict(
+	textfont=dict(
         color="white",
         size=16,
         family="Georgia, serif"
@@ -1125,9 +1134,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-
-# Show logout button
 
 st.sidebar.markdown(
     """

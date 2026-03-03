@@ -1,0 +1,41 @@
+# 📦 Files to Upload to GitHub (Simple Version - No Auth)
+
+## Total: 14 Essential Files
+
+### ✅ Root Files (5):
+1. Home.py
+2. Datasheet_DG.xlsx
+3. requirements.txt
+4. .gitignore
+5. README.md
+
+### ✅ .streamlit Folder (1):
+6. .streamlit/config.toml
+
+### ✅ logos Folder (2):
+7. logos/globexim_logo.png
+8. logos/kiht_logo.png
+
+### ✅ pages Folder (5):
+9.  pages/1_Trade_Overview.py
+10. pages/2_Top_Traded_Devices.py
+11. pages/3_Import_Risk_Mapping.py
+12. pages/4_Import_Reliance.py
+13. pages/5_Export_Performance.py
+
+### ✅ Documentation (Optional):
+14. SIMPLE_DEPLOYMENT.md
+
+---
+
+## 📍 Location
+All files are in: /app/github_upload_public/
+
+## 🚀 Quick Upload
+1. Use Emergent's "Save to GitHub"
+2. Select: /app/github_upload_public/
+3. Repo name: medical-device-dashboard
+4. Push!
+
+## ⏱️ Time: 5 minutes
+## 💰 Cost: $0

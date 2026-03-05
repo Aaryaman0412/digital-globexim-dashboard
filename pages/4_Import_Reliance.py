@@ -3,9 +3,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-
-# Check authentication
-
 import base64
 
 def img_to_base64(path):
@@ -14,6 +11,26 @@ def img_to_base64(path):
 
 globexim_logo = img_to_base64("logos/globexim_logo.png")
 kiht_logo = img_to_base64("logos/kiht_logo.png")
+
+# --------------------------------------------------
+# PLOTLY TOOLBAR CONFIG (ONLY SCREENSHOT + FULLSCREEN)
+# --------------------------------------------------
+PLOTLY_CONFIG = {
+    "displaylogo": False,
+    "modeBarButtonsToRemove": [
+        "zoom2d",
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "zoomIn2d",
+        "zoomOut2d",
+        "autoScale2d",
+        "resetScale2d",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+        "toggleSpikelines"
+    ]
+}
 
 
 # --------------------------------------------------
@@ -375,7 +392,7 @@ fig.update_traces(
     )
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True,config=PLOTLY_CONFIG)
 
 
 # --------------------------------------------------
@@ -391,9 +408,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-# Show logout button
-
 st.sidebar.markdown(
     """
     <div style="

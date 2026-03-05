@@ -5,9 +5,6 @@ import plotly.express as px
 
 import base64
 
-# Check authentication
-
-
 def img_to_base64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
@@ -15,7 +12,25 @@ def img_to_base64(path):
 globexim_logo = img_to_base64("logos/globexim_logo.png")
 kiht_logo = img_to_base64("logos/kiht_logo.png")
 
-
+# --------------------------------------------------
+# PLOTLY TOOLBAR CONFIG (ONLY SCREENSHOT + FULLSCREEN)
+# --------------------------------------------------
+PLOTLY_CONFIG = {
+    "displaylogo": False,
+    "modeBarButtonsToRemove": [
+        "zoom2d",
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "zoomIn2d",
+        "zoomOut2d",
+        "autoScale2d",
+        "resetScale2d",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+        "toggleSpikelines"
+    ]
+}
 
 # --------------------------------------------------
 # PAGE CONFIG
@@ -312,7 +327,7 @@ fig_butterfly.update_layout(
     ),
 
     legend=dict(
-        title_text="",
+	title_text="",
         orientation="h",
         yanchor="bottom",
         y=1.02,
@@ -382,7 +397,7 @@ fig_butterfly.update_traces(
 )
 
 # Render
-st.plotly_chart(fig_butterfly, use_container_width=True)
+st.plotly_chart(fig_butterfly, use_container_width=True, config=PLOTLY_CONFIG)
 
 st.markdown("<div style='height: 50px;'></div>", unsafe_allow_html=True)
 
@@ -515,7 +530,7 @@ fig_imp.update_traces(
     )
 )
 
-st.plotly_chart(fig_imp, use_container_width=True)
+st.plotly_chart(fig_imp, use_container_width=True,config=PLOTLY_CONFIG)
 
 # -------------------------------
 # TOP 10 EXPORTED PRODUCTS
@@ -615,7 +630,7 @@ fig_exp.update_traces(
     )
 )
 
-st.plotly_chart(fig_exp, use_container_width=True)
+st.plotly_chart(fig_exp, use_container_width=True,config=PLOTLY_CONFIG)
 
 st.markdown(
     """
@@ -627,9 +642,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
-
-# Show logout button
 
 st.sidebar.markdown(
     """

@@ -26,6 +26,12 @@ kiht_logo = img_to_base64("logos/kiht_logo.png")
 def apply_globexim_chart_theme(fig, title_text):
     fig.update_layout(
 
+        # Disable zoom / drag interactions
+        dragmode=False,
+	
+	# Clean hover behavior
+        hovermode="closest",
+
         # ----------- BACKGROUND -----------
         plot_bgcolor="#E6E6E6",
         paper_bgcolor="#E6E6E6",
@@ -43,7 +49,8 @@ def apply_globexim_chart_theme(fig, title_text):
                 color="#1f1f1f"
             )
         ),
-
+	
+	
         # ----------- GLOBAL FONT -----------
         font=dict(
             family="Georgia, serif",
@@ -116,6 +123,23 @@ def apply_globexim_chart_theme(fig, title_text):
 
         margin=dict(t=90, l=60, r=60, b=50)
     )
+
+PLOTLY_CONFIG = {
+    "displaylogo": False,
+    "modeBarButtonsToRemove": [
+        "zoom2d",
+        "pan2d",
+        "select2d",
+        "lasso2d",
+        "zoomIn2d",
+        "zoomOut2d",
+        "autoScale2d",
+        "resetScale2d",
+        "hoverClosestCartesian",
+        "hoverCompareCartesian",
+        "toggleSpikelines"
+    ]
+}
 
 
 # --------------------------------------------------
@@ -194,6 +218,7 @@ st.markdown(
         color: #1E40AF;
         font-weight: 600;
     }
+
 
  /* ================================
    TOP FILTER CLARITY IMPROVEMENTS
@@ -676,7 +701,7 @@ with col1:
         uniformtext_mode="hide"
     )
 
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(fig_bar, use_container_width=True, config=PLOTLY_CONFIG)
 
 
 
@@ -711,7 +736,7 @@ with col2:
 
     apply_globexim_chart_theme(fig_pie, "Import vs Export Share (%)")
 
-    st.plotly_chart(fig_pie, use_container_width=True)
+    st.plotly_chart(fig_pie, use_container_width=True, config=PLOTLY_CONFIG)
 
 
 # ==================================================
@@ -997,7 +1022,7 @@ fig_line.update_layout(
     )
 )
 
-st.plotly_chart(fig_line, use_container_width=True)
+st.plotly_chart(fig_line, use_container_width=True, config=PLOTLY_CONFIG)
 
 st.markdown("<div style='height: 40px;'></div>", unsafe_allow_html=True)
 
@@ -1082,7 +1107,7 @@ with col1:
 
     apply_globexim_chart_theme(fig_imports, "Top 10 Import Countries")
 
-    st.plotly_chart(fig_imports, use_container_width=True)
+    st.plotly_chart(fig_imports, use_container_width=True, config=PLOTLY_CONFIG)
 
 
 # -------------------------------
@@ -1122,7 +1147,7 @@ with col2:
 
     apply_globexim_chart_theme(fig_exports, "Top 10 Export Countries")
 
-    st.plotly_chart(fig_exports, use_container_width=True)
+    st.plotly_chart(fig_exports, use_container_width=True, config=PLOTLY_CONFIG)
 
 st.markdown(
     """

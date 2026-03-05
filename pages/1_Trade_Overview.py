@@ -523,7 +523,7 @@ st.markdown(
     }
 
     .kpi-value {
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 900;
         font-family: Georgia, serif;
         color: #2f2f2f;
